@@ -1,4 +1,6 @@
 # Make GitHub ignore vendor libraries while computing language stats.
 # See https://github.com/github/linguist#overrides.
-static/*          linguist-vendored
-static/js/custom.js            linguist-vendored=false
+static/css/*          linguist-vendored
+static/fonts/*        linguist-vendored
+static/js/*           linguist-vendored
+static/js/custom.js   linguist-vendored=false
