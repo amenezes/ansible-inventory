@@ -1,0 +1,28 @@
+version: '3'
+services:
+  ansible-inventory:
+    container_name: ansible-inventory
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - 80:5000
+    volumes:
+      - .env:/app/.env
+    #   - $PWD/reports:/app/reports
+    environment:
+      - FLASK_ENV=development
+      - BUCKET_NAME=inventory
+      - S3_ENDPOINT=http://minio:9000
+  redis:
+    container_name: redis
+    image: redis:alpine
+  minio:
+    container_name: minio
+    image: minio/minio
+    environment:
+      - MINIO_ACCESS_KEY=admin
+      - MINIO_SECRET_KEY=12345678
+    ports:
+      - 9000:9000
+    command: server /data

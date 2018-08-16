@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{{ url_for('static', filename='images/favicon.ico') }}" rel="icon" type="image/ico">
+
+    <title>Ansible | Inventory Report</title>
+
+    {% cache 60 * 12 %}
+    <!-- Bootstrap -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="{{ url_for('static', filename='css/font-awesome.min.css') }}" rel="stylesheet">
+    <!-- Datatables -->
+    <link href="{{ url_for('static', filename='css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/buttons.bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/responsive.bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/scroller.bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="{{ url_for('static', filename='css/custom.min.css') }}" rel="stylesheet">
+    {% endcache %}
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="summary" class="site_title"><i class="fa fa-laptop"></i> <span>ansible-inventory</span></a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <!-- menu profile quick info -->
+            <div class="profile clearfix">
+              <div class="profile_pic">
+                <img src="{{ url_for('static', filename='images/ansible-inventory.jpeg') }}" alt="..." class="img-circle profile_img">
+              </div>
+              <div class="profile_info">
+                <span>{{ organization }}</span>
+                <h2>Infrastructure</h2>
+              </div>
+            </div>
+            <!-- /menu profile quick info -->
+
+            <br />
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <h3>Navigation</h3>
+                <ul class="nav side-menu">
+                  <li><a><i class="fa fa-desktop"></i> Inventory <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="summary">Summary</a></li>
+                      <li><a href="stats">Stats</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- /sidebar menu -->
+
+            <!-- /menu footer buttons -->
+            <div class="sidebar-footer hidden-small">
+              <a data-toggle="tooltip" data-placement="top" title="Settings" href="https://github.com/amenezes/ansible-inventory">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Issues" href="https://github.com/amenezes/ansible-inventory/issues">
+                <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Code Quality" href="https://codeclimate.com/github/amenezes/ansible-inventory">
+                <span class="glyphicon glyphicon-console" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Home" href="/">
+                <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+              </a>
+            </div>
+            <!-- /menu footer buttons -->
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+          <div class="nav_menu">
+            <nav>
+              <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              </div>
+
+              <ul class="nav navbar-nav navbar-right">
+                <li role="presentation" class="dropdown">
+                  <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                    <i class="glyphicon  glyphicon-option-vertical"></i>
+                  </a>
+                  <ul id="menu1" class="dropdown-menu dropdown-usermenu pull-right" role="menu">
+                      <li><a href="https://github.com/amenezes/ansible-inventory"><i class="fa fa-globe pull-right"></i> Project Page</a></li>
+                    <li><a href="https://github.com/amenezes/ansible-inventory/blob/master/Powered-by.md"><i class="fa fa-cubes pull-right"></i> Powered By</a></li>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+            </div>
+
+            <div class="clearfix"></div>
+
+            {% block content %}{% endblock %}
+
+          </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right">
+            <a href="#">version 1.4.0</a>
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+
+    {% cache 60 * 12 %}
+    <!-- jQuery -->
+    <script type=text/javascript src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <!-- Bootstrap -->
+    <script type=text/javascript src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <!-- FastClick -->
+    <script type=text/javascript src="{{ url_for('static', filename='js/fastclick.js') }}"></script>
+    <!-- Datatables -->
+    <script type=text/javascript src="{{ url_for('static', filename='js/jquery.dataTables.min.js') }}"></script>
+    <script type=text/javascript src="{{ url_for('static', filename='js/dataTables.bootstrap.min.js') }}"></script>
+    <script type=text/javascript src="{{ url_for('static', filename='js/dataTables.buttons.min.js') }}"></script>
+    <script type=text/javascript src="{{ url_for('static', filename='js/buttons.bootstrap.min.js') }}"></script>
+    <script type=text/javascript src="{{ url_for('static', filename='js/buttons.html5.min.js') }}"></script>
+    <script type=text/javascript src="{{ url_for('static', filename='js/buttons.print.min.js') }}"></script>
+    <script type=text/javascript src="{{ url_for('static', filename='js/dataTables.responsive.min.js') }}"></script>
+    <script type=text/javascript src="{{ url_for('static', filename='js/responsive.bootstrap.js') }}"></script>
+    <script type=text/javascript src="{{ url_for('static', filename='js/dataTables.scroller.min.js') }}"></script>
+    <script type=text/javascript src="{{ url_for('static', filename='js/jszip.min.js') }}"></script>
+    <script type=text/javascript src="{{ url_for('static', filename='js/pdfmake.min.js') }}"></script>
+    <!-- ECharts -->
+    <script type=text/javascript src="{{ url_for('static', filename='js/echarts.min.js') }}"></script>
+    <!-- Custom Theme Scripts -->
+    <script type=text/javascript src="{{ url_for('static', filename='js/custom.min.js') }}"></script>
+    {% endcache %}
+
+  </body>
+</html>

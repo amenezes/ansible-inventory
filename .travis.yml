@@ -1,0 +1,16 @@
+language: python
+
+services:
+ - docker
+
+before_script:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+script:
+  - docker image build -t amenezes/$IMAGE_NAME:$IMAGE_TAG
+  - docker push amenezes/$IMAGE_NAME:$IMAGE_TAG
+
+env:
+  global:
+    - IMAGE_TAG: stable
+    - IMAGE_NAME: ansible-inventory

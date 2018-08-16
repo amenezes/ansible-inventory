@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- dashboard title -->
+<div class="row tile_count">
+<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+  <span class="count_top"><i class="fa fa-server"></i> Total Hosts</span>
+  <div class="count">{{ '%0.0f'|format(stats['hosts_total']) }}</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+  <span class="count_top"><i class="fa fa-server"></i> Hypervisors</span>
+  <div class="count">
+    {{ stats['vendors']|length }}
+  </div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+  <span class="count_top"><i class="fa fa-group"></i> Teams</span>
+  <div class="count">
+    {{ stats['teams']|length }}
+  </div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+  <span class="count_top"><i class="fa fa-codepen"></i> Total vCPU</span>
+  <div class="count">
+    {{ '%0.0f'|format(stats['vcpus_total']) }}
+  </div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+  <span class="count_top"><i class="fa fa-bar-chart"></i> Total RAM (GB)</span>
+  <div class="count">
+    {{ '%0.0f'|format(stats['ram_total']/1000) }}
+  </div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+  <span class="count_top"><i class="fa fa-bar-chart"></i> Total SWAP (GB)</span>
+  <div class="count">
+    {{ '%0.0f'|format(stats['swap_total']/1000) }}
+  </div>
+</div>
+</div>
+<!-- end dashboard title -->
+
+<div class="row">
+<!-- architecture graph -->
+<div class="col-md-4 col-sm-4 col-xs-12">
+  <div class="x_panel">
+    <div class="x_title">
+      <h2>Hosts architecture</h2>
+      <ul class="nav navbar-right panel_toolbox">
+        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-question-circle"></i></a>
+        </li>
+        <li><a class="close-link"><i class="fa fa-close"></i></a>
+        </li>
+      </ul>
+      <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+
+      <div id="echart_pie" style="height: 350px; -webkit-tap-highlight-color: transparent; user-select: none; position: relative; background-color: transparent;" _echarts_instance_="ec_1532207674877"><div style="position: relative; overflow: hidden; width: 472px; height: 350px; cursor: default;"><canvas width="472" height="350" data-zr-dom-id="zr_0" style="position: absolute; left: 0px; top: 0px; width: 472px; height: 350px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></canvas></div><div style="position: absolute; display: none; border-style: solid; white-space: nowrap; z-index: 9999999; transition: left 0.4s cubic-bezier(0.23, 1, 0.32, 1), top 0.4s cubic-bezier(0.23, 1, 0.32, 1); background-color: rgba(0, 0, 0, 0.5); border-width: 0px; border-color: rgb(51, 51, 51); border-radius: 4px; color: rgb(255, 255, 255); font: 14px/21px Arial, Verdana, sans-serif; padding: 5px; left: 209px; top: 192px;">访问来源 <br>Search Engine : 1548 (60.42%)</div></div>
+
+    </div>
+  </div>
+</div>
+<!-- end architecture graph -->
+
+<!-- top team -->
+<div class="col-md-4 col-sm-4 col-xs-12">
+  <div class="x_panel">
+    <div class="x_title">
+      <h2>Hosts by team</h2>
+      <ul class="nav navbar-right panel_toolbox">
+        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-question-circle"></i></a>
+        </li>
+        <li><a class="close-link"><i class="fa fa-close"></i></a>
+        </li>
+      </ul>
+      <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+
+      <div id="hosts_teams" style="height: 350px; -webkit-tap-highlight-color: transparent; user-select: none; position: relative; background-color: transparent;" _echarts_instance_="ec_1532207674875"><div style="position: relative; overflow: hidden; width: 472px; height: 350px;"><canvas width="472" height="350" data-zr-dom-id="zr_0" style="position: absolute; left: 0px; top: 0px; width: 472px; height: 350px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></canvas></div><div></div></div>
+
+    </div>
+  </div>
+</div>
+<!-- end team -->
+
+<!-- distribution chart -->
+<div class="col-md-4 col-sm-4 col-xs-12">
+  <div class="x_panel">
+    <div class="x_title">
+      <h2>Distros</h2>
+      <ul class="nav navbar-right panel_toolbox">
+        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-question-circle"></i></a>
+        </li>
+        <li><a class="close-link"><i class="fa fa-close"></i></a>
+        </li>
+      </ul>
+      <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+
+      <div id="echart_pie2" style="height: 350px; -webkit-tap-highlight-color: transparent; user-select: none; position: relative; background-color: transparent;" _echarts_instance_="ec_1532207674875"><div style="position: relative; overflow: hidden; width: 472px; height: 350px;"><canvas width="472" height="350" data-zr-dom-id="zr_0" style="position: absolute; left: 0px; top: 0px; width: 472px; height: 350px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></canvas></div><div></div></div>
+
+    </div>
+  </div>
+</div>
+<!-- end distribution chart -->
+</div>
+
+<div class="row">
+<div class="x_content">
+  <!-- kernel version bar chart -->
+  <!-- <div class="col-md-6 col-sm-6 col-xs-12"> -->
+  <div class="col-md-8 col-sm-8 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2>Kernel</h2>
+        <ul class="nav navbar-right panel_toolbox">
+          <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-question-circle"></i></a>
+          </li>
+          <li><a class="close-link"><i class="fa fa-close"></i></a>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+
+        <div id="echart_line" style="height: 350px; -webkit-tap-highlight-color: transparent; user-select: none; position: relative; background-color: transparent;" _echarts_instance_="ec_1532369273374"><div style="position: relative; overflow: hidden; width: 582px; height: 350px; cursor: default;"><canvas width="582" height="350" data-zr-dom-id="zr_0" style="position: absolute; left: 0px; top: 0px; width: 582px; height: 350px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></canvas></div><div style="position: absolute; display: none; border-style: solid; white-space: nowrap; z-index: 9999999; transition: left 0.4s cubic-bezier(0.23, 1, 0.32, 1), top 0.4s cubic-bezier(0.23, 1, 0.32, 1); background-color: rgba(0, 0, 0, 0.5); border-width: 0px; border-color: rgb(51, 51, 51); border-radius: 4px; color: rgb(255, 255, 255); font: 14px/21px Arial, Verdana, sans-serif; padding: 5px; left: 155.8px; top: 167px;">Tue<br><span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:#26B99A"></span>Deal : 12<br><span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:#34495E"></span>Pre-order : 182<br><span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:#BDC3C7"></span>Intent : 1,132</div></div>
+
+      </div>
+    </div>
+  </div>
+  <!-- end kernel version bar chart -->
+
+  <!-- activity -->
+  <div class="col-md-4 col-sm-4 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2>OS Release</h2>
+        <ul class="nav navbar-right panel_toolbox">
+          <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-question-circle"></i></a>
+          </li>
+          <li><a class="close-link"><i class="fa fa-close"></i></a>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+
+        <div id="echart_pie3" style="height: 350px; -webkit-tap-highlight-color: transparent; user-select: none; position: relative; background-color: transparent;" _echarts_instance_="ec_1532650845698"><div style="position: relative; overflow: hidden; width: 472px; height: 350px; cursor: default;"><canvas width="472" height="350" data-zr-dom-id="zr_0" style="position: absolute; left: 0px; top: 0px; width: 472px; height: 350px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></canvas></div><div></div></div>
+
+      </div>
+    </div>
+  </div>
+  <!-- end activity -->
+
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{
+  "devices": [
+    "sda",
+    "sdb",
+    "xvdb",
+    "xvdc",
+    "xvdd",
+    "xvde",
+    "xvdf",
+    "xvdg",
+    "xvdh",
+    "xvdi",
+    "xvdj"
+  ]
+}

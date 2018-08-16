@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h3>Inventory Report</h3>
+        <div class="clearfix"></div>
+      </div>
+
+      <div class="x_content">
+        <!-- <table id="datatable-buttons" class="table table-striped table-bordered"> -->
+        <table id="datatable-buttons" class="table table-striped table-bordered dataTable no-footer dtr-inline collapsed" role="grid" aria-describedby="datatable-buttons_info">
+          <thead>
+            <tr role="row">
+              <th>Hostname</th>
+              <th>Tags</th>
+              <th>Architecture</th>
+              <th>Kernel</th>
+              <th>vCPU</th>
+              <th>Distribution</th>
+              <th>Version</th>
+              <th>DNS</th>
+              <th>IPv4</th>
+              <th>RAM (MB)</th>
+              <th>SWAP (MB)</th>
+              <th>Devices</th>
+              <th>System Vendor</th>
+              <th>Team</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for data in servers_data['servers'] %}
+            <tr role="row">
+              <td>{{ data['server']['hostname'] }}</td>
+              <td>
+                {% for tag in data['server']['metadata']['tags'] %}
+                  <span class="label label-primary">{{ tag }}</span> <br>
+                {% endfor %}
+              </td>
+              <td>{{ data['server']['architecture'] }}</td>
+              <td>{{ data['server']['kernel'] }}</td>
+              <td>{{ data['server']['vcpus'] }}</td>
+              <td>{{ data['server']['distribution'] }}</td>
+              <td>{{ data['server']['distribution_version'] }}</td>
+              <td>{{ data['server']['dns']['nameservers']|join(', ') }}</td>
+              <td>{{ data['server']['ipv4']['address'] }}</td>
+              <td>{{ data['server']['memory_total'] }}</td>
+              <td>{{ data['server']['swap_total'] }}</td>
+              <td>
+                {% for device, size in data['server']['devices'].items() %}
+                  {{ device }}:{{ size }} <br>
+                {% endfor %}
+              </td>
+              <td>{{ data['server']['vendor'] }}</td>
+              <td>{{ data['server']['metadata']['team'] }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
